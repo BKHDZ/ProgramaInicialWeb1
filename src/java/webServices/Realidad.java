@@ -5,6 +5,12 @@
  */
 package webServices;
 
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.io.PrintWriter;
+import java.net.Socket;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.UriInfo;
 import javax.ws.rs.Consumes;
@@ -38,7 +44,21 @@ public class Realidad {
             @QueryParam("edad") String valor2
     ) {
         System.out.println("Entro WS [" + valor1 + "][" + valor2 + "]");
-        return "{'valor1':'" + valor1 + "','value2':'" + valor2 + "'}";
+        String respuesta = "{}";
+        try {
+            Socket socket = new Socket("localhost", 4000);
+            PrintWriter out = new PrintWriter(socket.getOutputStream(), true);
+            BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+            out.println("CREAR SER VIVO");
+            out.println(valor1);
+            out.println(valor2);
+            out.println("Humano");
+            respuesta = "{'respuestaSocket':'" + in.readLine() + "'}";
+        } catch (Exception e) {
+            respuesta = "{'respuestaSocket':'" + e.getMessage() + "'}";
+        }
+
+        return respuesta;
     }
 
     @GET
@@ -56,8 +76,8 @@ public class Realidad {
     @Path("bloque3")
     @Produces(MediaType.APPLICATION_JSON)
     public String getABloque3(
-     @QueryParam("nombre") String valor1
-    ) { 
+            @QueryParam("nombre") String valor1
+    ) {
         System.out.println("Entro WS [" + valor1 + "][" + "---" + "]");
         return "{'valor1':'" + valor1 + "','value2':'" + "---" + "'}";
         //return "POST works!";
