@@ -10,6 +10,7 @@ import javax.ws.rs.core.UriInfo;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.Produces;
 import javax.ws.rs.GET;
+import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.PUT;
 import javax.ws.rs.QueryParam;
@@ -33,20 +34,33 @@ public class Realidad {
     @Path("bloque1")
     @Produces(MediaType.APPLICATION_JSON)
     public String getABloque1(
-          @QueryParam("usuario") String value1,
-          @QueryParam("otra cosa") String valor2
+            @QueryParam("nombre") String valor1,
+            @QueryParam("edad") String valor2
     ) {
-
-        return "{'valor1':'" + value1 + "','value2':'" +valor2 + "'}";
+        System.out.println("Entro WS [" + valor1 + "][" + valor2 + "]");
+        return "{'valor1':'" + valor1 + "','value2':'" + valor2 + "'}";
     }
 
     @GET
     @Path("bloque2")
     @Produces(MediaType.APPLICATION_JSON)
-    @Consumes(MediaType.TEXT_PLAIN)
-    public String getABloque2() {
+    public String getABloque2(
+            @QueryParam("tipoNave") String valor1,
+            @QueryParam("nombreNave") String valor2
+    ) {
+        System.out.println("Entro WS [" + valor1 + "][" + valor2 + "]");
+        return "{'valor1':'" + valor1 + "','value2':'" + valor2 + "'}";
+    }
 
-        return "{}";
+    @POST
+    @Path("bloque3")
+    @Produces(MediaType.APPLICATION_JSON)
+    public String getABloque3(
+     @QueryParam("nombre") String valor1
+    ) { 
+        System.out.println("Entro WS [" + valor1 + "][" + "---" + "]");
+        return "{'valor1':'" + valor1 + "','value2':'" + "---" + "'}";
+        //return "POST works!";
     }
 
     @PUT

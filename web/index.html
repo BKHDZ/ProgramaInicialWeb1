@@ -9,8 +9,24 @@ and open the template in the editor.
         <title>TODO supply a title</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+        <link rel='stylesheet' type='text/css' href='css/extStyle.css' />
+        <link rel='stylesheet' type='text/css' href='/Componente/classic/theme-crisp/resources/theme-crisp-all.css' />
+        <link rel='stylesheet' type='text/css' href='/Componente/packages/charts/classic/crisp/resources/charts-all.css' />
     </head>
     <body>
-        <div>TODOfsdgfsdgdf write content</div>
+        <script type="text/javascript" src="/Componente/ext-all-debug.js"></script>
+        <script type="text/javascript" src="/Componente/classic/locale/locale-es.js"></script>
+        <script type='text/javascript' src='/Componente/classic/theme-crisp/theme-crisp.js'></script>
+        <script type="text/javascript" src="/Componente/packages/charts/classic/charts.js"></script>
+        <script type="text/javascript" src="/Componente/packages/premium/pivot/classic/pivot-debug.js"></script>
+        <!--Scrips de usuario-->
+        <script type="text/javascript" src="javascript/functions.js"></script>
+        <script>
+            Ext.onReady(function () {
+                Ext.tip.QuickTipManager.init();
+                init();
+            });
+        </script>
     </body>
 </html>
